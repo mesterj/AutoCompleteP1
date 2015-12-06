@@ -7,17 +7,32 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, COUNTRIES);
         AutoCompleteTextView textView = (AutoCompleteTextView)
                 findViewById(R.id.autoText);
-        textView.setAdapter(adapter);
+        textView.setAdapter(adapter);*/
+        List<Person> persons = new ArrayList<Person>();
+        persons.add(new Person("Mester József","vezető programozó",41));
+        persons.add(new Person("Mester Béla", "vezető programozó", 41));
+        persons.add(new Person("Dúró István","vezető programozó",28));
+        persons.add(new Person("Dúró József","vezető programozó",25));
+
+        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autoText);
+
+
+        ArrayAdapter<Person> myadapter = new PersonArrayAdapter(this,R.layout.personitemview,persons);
+
+        textView.setAdapter(myadapter);
     }
 
     private static final String[] COUNTRIES = new String[] {
