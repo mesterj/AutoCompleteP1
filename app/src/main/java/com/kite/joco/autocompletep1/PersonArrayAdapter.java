@@ -1,6 +1,7 @@
 package com.kite.joco.autocompletep1;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public class PersonArrayAdapter extends ArrayAdapter<Person> {
         }
 
         Person p = persons.get(position);
+        Log.i("Pos:", " "+ position);
 
         TextView textViewNev = (TextView) convertView.findViewById(R.id.tvnev);
         //TextView textViewBeosztas = (TextView) convertView.findViewById(R.id.tvbeosztas);

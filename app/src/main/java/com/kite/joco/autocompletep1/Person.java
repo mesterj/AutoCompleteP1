@@ -3,9 +3,10 @@ package com.kite.joco.autocompletep1;
 /**
  * Created by Joco on 2015.12.06..
  */
-public class Person {
+public class Person implements Comparable {
 
-    String name,beoasztas;
+
+    String name, beoasztas;
     int eletkor;
 
     public Person() {
@@ -44,5 +45,27 @@ public class Person {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Person person = (Person) o;
+
+        return !(name != null ? !name.equals(person.name) : person.name != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
+
+    @Override
+    public int compareTo(Object another) {
+        return ((Person)another).compareTo(getName());
     }
 }

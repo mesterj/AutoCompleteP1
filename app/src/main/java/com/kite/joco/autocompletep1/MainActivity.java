@@ -21,16 +21,12 @@ public class MainActivity extends AppCompatActivity {
         AutoCompleteTextView textView = (AutoCompleteTextView)
                 findViewById(R.id.autoText);
         textView.setAdapter(adapter);*/
-        List<Person> persons = new ArrayList<Person>();
-        persons.add(new Person("Mester József","vezető programozó",41));
-        persons.add(new Person("Mester Béla", "vezető programozó", 41));
-        persons.add(new Person("Dúró István","vezető programozó",28));
-        persons.add(new Person("Dúró József","vezető programozó",25));
+
 
         AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.autoText);
 
 
-        ArrayAdapter<Person> myadapter = new PersonArrayAdapter(this,R.layout.personitemview,persons);
+        ArrayAdapter<Person> myadapter = new PersonArrayAdapter(this,R.layout.personitemview,getPersons());
 
         textView.setAdapter(myadapter);
     }
@@ -39,7 +35,20 @@ public class MainActivity extends AppCompatActivity {
             "Belgium", "France", "Italy", "Germany", "Spain", "Scotland","Finland","Beluros","Hungary","Ireland","Geneva","Frankreich"
     };
 
+    List<Person> getPersons() {
+        List<Person> persons = new ArrayList<Person>();
+        persons.add(new Person("Mester József", "vezető programozó", 41));
+        persons.add(new Person("Mester Béla", "vezető programozó", 41));
+        persons.add(new Person("Dúró István", "vezető programozó", 28));
+        persons.add(new Person("Dúró József", "vezető programozó", 25));
+        persons.add(new Person("Fejes József", "informatikus", 25));
+        persons.add(new Person("Fejes Mihály", "faszfej", 42));
+        persons.add(new Person("Fejes Tibor", "idióta", 35));
+        persons.add(new Person("Fejes Béla", "minta", 25));
+        persons.add(new Person("Kovács László", "valami", 25));
 
+        return persons;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
