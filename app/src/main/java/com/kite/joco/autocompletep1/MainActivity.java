@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<Person> myadapter = new PersonArrayAdapter(this,R.layout.personitemview,getPersons());
 
         textView.setAdapter(myadapter);
+        textView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Person selectedPerson = (Person) parent.getAdapter().getItem(position);
+                Toast.makeText(MainActivity.this," Kiválasztott adatai: " + selectedPerson.getName() + " beosztás: "+ selectedPerson.getBeoasztas() + " id: "+ selectedPerson.getEletkor(),Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private static final String[] COUNTRIES = new String[] {
@@ -37,15 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
     List<Person> getPersons() {
         List<Person> persons = new ArrayList<Person>();
-        persons.add(new Person("Mester József", "vezető programozó", 41));
-        persons.add(new Person("Mester Béla", "vezető programozó", 41));
-        persons.add(new Person("Dúró István", "vezető programozó", 28));
-        persons.add(new Person("Dúró József", "vezető programozó", 25));
-        persons.add(new Person("Fejes József", "informatikus", 25));
-        persons.add(new Person("Fejes Mihály", "faszfej", 42));
-        persons.add(new Person("Fejes Tibor", "idióta", 35));
-        persons.add(new Person("Fejes Béla", "minta", 25));
-        persons.add(new Person("Kovács László", "valami", 25));
+        persons.add(new Person("Mester József", "vezető programozó", 1));
+        persons.add(new Person("Mester Béla", "vezető programozó", 2));
+        persons.add(new Person("Dúró István", "vezető programozó", 3));
+        persons.add(new Person("Dúró József", "vezető programozó", 4));
+        persons.add(new Person("Fejes József", "informatikus", 5));
+        persons.add(new Person("Fejes Mihály", "faszfej", 6));
+        persons.add(new Person("Fejes Tibor", "idióta", 7));
+        persons.add(new Person("Fejes Béla", "minta", 8));
+        persons.add(new Person("Kovács László", "valami", 9));
 
         return persons;
     }

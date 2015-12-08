@@ -48,20 +48,24 @@ public class PersonArrayAdapter extends ArrayAdapter<Person> {
             // in case you want to add some style, you can do something like:
             textViewItem.setBackgroundColor(Color.CYAN);
         */
-        if (convertView == null ){
-            LayoutInflater inflater = ((MainActivity) mContext).getLayoutInflater();
-            convertView = inflater.inflate(resource,parent,false);
+
+        View view = convertView;
+        if (view == null ){
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            view = inflater.inflate(resource,parent,false);
         }
 
-        Person p = persons.get(position);
-        Log.i("Pos:", " "+ position);
+        Person p = getItem(position);
+        Log.i("Pos:", " "+ p.getEletkor());
 
-        TextView textViewNev = (TextView) convertView.findViewById(R.id.tvnev);
-        //TextView textViewBeosztas = (TextView) convertView.findViewById(R.id.tvbeosztas);
+        if (p != null) {
 
-        textViewNev.setText(p.getName());
-        //textViewBeosztas.setText(p.getBeoasztas());
+            TextView textViewNev = (TextView) view.findViewById(R.id.tvnev);
+            TextView textViewBeosztas = (TextView)view.findViewById(R.id.tvbeosztas);
 
-        return convertView;
+            textViewNev.setText(p.getName());
+            textViewBeosztas.setText(p.getBeoasztas());
+        }
+        return view;
     }
 }
